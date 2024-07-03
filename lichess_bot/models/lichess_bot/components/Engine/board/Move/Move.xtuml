@@ -16,38 +16,14 @@ within lichess_bot::components::Engine::board is
     Eval_depth: integer;
 
     @dialect("oal");
-    @operation_num(1);
-    class operation from_square(move: in string) return instance of Square is
-      @noparse
-      str = param.move;
-      move_from = STRING::substr(s:str, begin:0, end:2);
-      select any square from instances of Square
-       where (selected.lichess_desig == move_from);
-      return square;
-      @endnoparse
-    end operation;
-
-    @dialect("oal");
-    @operation_num(2);
-    class operation to_square(move: in string) return instance of Square is
-      @noparse
-      str = param.move;
-      move_to = STRING::substr(s:str, begin:2, end:4);
-      select any square from instances of Square
-       where (selected.lichess_desig == move_to);
-      return square;
-      @endnoparse
-    end operation;
-
-    @dialect("oal");
     @operation_num(3);
     operation evaluate_move(fen: in string, moves: in sequence of string) is
       @noparse
       fen = param.fen;
       moves = param.moves;
       
-      src = Move::from_square( move:self.Notation );
-      dest = Move::to_square( move:self.Notation );
+      src = ::from_square( move:self.Notation );
+      dest = ::to_square( move:self.Notation );
       
       moved_piece = src.occupant();
       taken = dest.occupant();
@@ -103,7 +79,7 @@ within lichess_bot::components::Engine::board is
       fen = param.fen;
       moves = param.moves;
       
-      dest = Move::to_square( move:self.Notation );
+      dest = ::to_square( move:self.Notation );
       taken = dest.occupant();
       
       if (not_empty taken)

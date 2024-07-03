@@ -103,6 +103,9 @@ within lichess_bot::components::Engine::games::'Active Game' is
       create object instance m of Move;
       m.Eval_depth = 1;
       m.Notation = legal_moves[i];
+      start = ::from_square( move:legal_moves[i] );
+      end = ::to_square( move:legal_moves[i] );
+      relate start to end across R2.'starts from' using m;
       m.Is_safe = true; // tentatively
       LOG::LogInfo(message: "Evaluating bot move " + legal_moves[i]); 
       m.evaluate_move(fen:self.initial_fen, moves:moves);

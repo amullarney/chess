@@ -3,32 +3,98 @@ render : "lichess_bot::components::Engine::board"
 shapes :
   shape : Square
     render : class "lichess_bot::components::Engine::board::Square"
-    bounds : x : 1860.0 y : 1872.0 width : 200.0 height : 150.0
+    bounds : x : 2244.0 y : 1944.0 width : 200.0 height : 150.0
   shape : Piece
     render : class "lichess_bot::components::Engine::board::Piece"
-    bounds : x : 2244.0 y : 1872.0 width : 200.0 height : 150.0
+    bounds : x : 1632.0 y : 1956.0 width : 200.0 height : 150.0
   shape : Move
     render : class "lichess_bot::components::Engine::board::Move"
-    bounds : x : 1488.0 y : 1920.0 width : 200.0 height : 204.0
+    bounds : x : 1896.0 y : 1692.0 width : 200.0 height : 204.0
 
 connectors :
   connector : R1
     render : association "lichess_bot::components::Engine::board::R1"
     polyline :
       segment :
-        start : x : 2060.0 y : 1968.0
-        end :   x : 2244.0 y : 1968.0
+        start : x : 2244.0 y : 2052.0
+        end :   x : 1832.0 y : 2052.0
     anchors :
       start :
-        point : x : 2060.0 y : 1968.0
+        point : x : 2244.0 y : 2052.0
         shape : Square
       end :
-        point : x : 2244.0 y : 1968.0
+        point : x : 1832.0 y : 2052.0
         shape : Piece
     texts :
       text :
-        bounds : x : 2075.0 y : 1982.0 width : 0.0 height : 0.0 where : start
+        bounds : x : 2159.0 y : 2068.0 width : 0.0 height : 0.0 where : start
       text :
-        bounds : x : 2145.0 y : 1926.0 width : 0.0 height : 0.0 where : middle
+        bounds : x : 2031.0 y : 2011.0 width : 0.0 height : 0.0 where : middle
       text :
-        bounds : x : 2142.0 y : 1983.0 width : 0.0 height : 0.0 where : end
+        bounds : x : 1853.0 y : 2068.0 width : 0.0 height : 0.0 where : end
+  connector : R2
+    render : association "lichess_bot::components::Engine::board::R2"
+    polyline :
+      segment :
+        start : x : 2340.0 y : 1944.0
+        end :   x : 2340.0 y : 1848.0
+      segment :
+        start : x : 2340.0 y : 1848.0
+        end :   x : 2196.0 y : 1848.0
+      segment :
+        start : x : 2196.0 y : 1848.0
+        end :   x : 2196.0 y : 1986.0
+      segment :
+        start : x : 2196.0 y : 1986.0
+        end :   x : 2244.0 y : 1986.0
+    anchors :
+      start :
+        point : x : 2340.0 y : 1944.0
+        shape : Square
+      end :
+        point : x : 2244.0 y : 1986.0
+        shape : Square
+    texts :
+      text :
+        bounds : x : 2381.0 y : 1916.0 width : 0.0 height : 0.0 where : start
+      text :
+        bounds : x : 2194.0 y : 1810.0 width : 0.0 height : 0.0 where : middle
+      text :
+        bounds : x : 2147.0 y : 1997.0 width : 0.0 height : 0.0 where : end
+  connector : R2____Move
+    render : associative_link "lichess_bot::components::Engine::board::R2::Move"
+    polyline :
+      segment :
+        start : x : 2096.0 y : 1884.0
+        end :   x : 2196.0 y : 1884.0
+    anchors :
+      start :
+        point : x : 2096.0 y : 1884.0
+        shape : Move
+      end :
+        point : x : 2196.0 y : 1884.0
+        connector : R2
+    texts :
+  connector : R3
+    render : association "lichess_bot::components::Engine::board::R3"
+    polyline :
+      segment :
+        start : x : 1896.0 y : 1776.0
+        end :   x : 1716.0 y : 1776.0
+      segment :
+        start : x : 1716.0 y : 1776.0
+        end :   x : 1716.0 y : 1956.0
+    anchors :
+      start :
+        point : x : 1896.0 y : 1776.0
+        shape : Move
+      end :
+        point : x : 1716.0 y : 1956.0
+        shape : Piece
+    texts :
+      text :
+        bounds : x : 1795.0 y : 1790.0 width : 0.0 height : 0.0 where : start
+      text :
+        bounds : x : 1716.0 y : 1728.0 width : 0.0 height : 0.0 where : middle
+      text :
+        bounds : x : 1728.0 y : 1918.0 width : 0.0 height : 0.0 where : end
