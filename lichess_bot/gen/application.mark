@@ -1,4 +1,2 @@
 *,RootPackage,*,lichess_bot::system
 *,ApplicationName,*,LichessBot
-components::Engine,InitFunction,Component,init
-components::Lichess::API,ImplementationClass,Port,system.lichess.LichessAPIAdapter

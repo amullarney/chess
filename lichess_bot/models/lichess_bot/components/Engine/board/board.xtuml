@@ -4,19 +4,23 @@ within lichess_bot::components::Engine is
 
   //! Maintains a representation of the chessboard and piece placement and movement.
   package board is
-    class Move;
     class Piece;
+    class ProspectiveMove;
     class Square;
     //! A piece not yet removed from the board must occupy a square.
     relationship R1 is Piece unconditionally occupies one Square,
                        Square conditionally 'is occupied by' one Piece;
 
-    relationship R2 is Square conditionally 'ends on' one Square,
-                       Square conditionally 'starts from' one Square
-                       using one Move;
+    relationship R2 is Square unconditionally 'ends on' one Square,
+                       Square unconditionally 'starts from' one Square
+                       using one ProspectiveMove;
 
-    relationship R3 is Move conditionally captures one Piece,
-                       Piece conditionally 'is captured by' one Move;
+    relationship R3 is Piece conditionally 'is captured by' one ProspectiveMove,
+                       ProspectiveMove conditionally captures one Piece;
+
+    relationship R4 is Piece conditionally 'is threatened by' many Piece,
+                       Piece conditionally threatens many Piece
+                       using one ProspectiveMove;
 
   end package;
 

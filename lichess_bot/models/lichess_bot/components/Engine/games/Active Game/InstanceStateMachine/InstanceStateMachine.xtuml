@@ -100,29 +100,28 @@ within lichess_bot::components::Engine::games::'Active Game' is
     n = legal_moves.length - 1;
     i = 0;
     while (i < n)  // for each legal move we could play...
-      create object instance m of Move;
+      create object instance m of  ProspectiveMove;
       m.Eval_depth = 1;
-      m.Notation = legal_moves[i];
+      m.Notation = legal_moves[i];  // keep this for debug - and for various moves arrays
       start = ::from_square( move:legal_moves[i] );
-      end = ::to_square( move:legal_moves[i] );
-      relate start to end across R2.'starts from' using m;
+      target = ::to_square( move:legal_moves[i] );
+      relate start to target across R2.'starts from' using m;
       m.Is_safe = true; // tentatively
       LOG::LogInfo(message: "Evaluating bot move " + legal_moves[i]); 
       m.evaluate_move(fen:self.initial_fen, moves:moves);
       i = i + 1;
     end while;
-    select many possible_moves from instances of Move
+    select many possible_moves from instances of  ProspectiveMove
      where (selected.Eval_depth == 1);
     for each possible in possible_moves
       if (possible.Value > best)
         ourmove = possible.Notation;
         best = possible.Value;
       end if;
-      delete object instance possible;
     end for; 
     
     if (ourmove == "")
-      select any move from instances of Move
+      select any move from instances of  ProspectiveMove
        where ( selected.Is_safe == true);
       if (not_empty move)
         ourmove = move.Notation;
@@ -135,6 +134,10 @@ within lichess_bot::components::Engine::games::'Active Game' is
     	  LOG::LogInfo(message: "Picking random move! " + ourmove); 
       end if;
     end if;
+    
+    for each possible in possible_moves
+      delete object instance possible;
+    end for; 
     
     // play the move
     create event instance e of ActiveGame3:'play move'(move: ourmove) to self;
