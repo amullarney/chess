@@ -31,6 +31,9 @@ shapes :
   shape : Opportunity
     render : class "lichess_bot::components::Engine::board::Opportunity"
     bounds : x : 2148.0 y : 2640.0 width : 200.0 height : 96.0
+  shape : Threat
+    render : class "lichess_bot::components::Engine::board::Threat"
+    bounds : x : 1740.0 y : 2640.0 width : 200.0 height : 97.0
 
 connectors :
   connector : R2
@@ -50,7 +53,7 @@ connectors :
         point : x : 2060.0 y : 2123.0
         shape : Piece
       end :
-        point : x : 2520.0 y : 2256.0
+        point : x : 2411.0 y : 2123.0
         shape : OccupiedSquare
     texts :
       text :
@@ -105,7 +108,7 @@ connectors :
         point : x : 2290.0 y : 2304.0
         shape : MyPiece
       end :
-        point : x : 1955.0 y : 2255.0
+        point : x : 2290.0 y : 2255.0
         connector : R3
     texts :
   connector : R4
@@ -157,7 +160,7 @@ connectors :
         point : x : 2720.0 y : 2255.0
         shape : OccupiedSquare
       end :
-        point : x : 2866.0 y : 2159.0
+        point : x : 2866.0 y : 2255.0
         connector : R1
     texts :
   connector : R1____OpenSquare
@@ -174,7 +177,7 @@ connectors :
         point : x : 2720.0 y : 2100.0
         shape : OpenSquare
       end :
-        point : x : 2866.0 y : 2159.0
+        point : x : 2866.0 y : 2100.0
         connector : R1
     texts :
   connector : R5
@@ -191,7 +194,7 @@ connectors :
         point : x : 2867.0 y : 2436.0
         shape : ProspectiveMove
       end :
-        point : x : 2720.0 y : 2303.0
+        point : x : 2867.0 y : 2303.0
         shape : OccupiedSquare
     texts :
       text :
@@ -214,7 +217,7 @@ connectors :
         point : x : 2960.0 y : 2507.0
         shape : ProspectiveMove
       end :
-        point : x : 3144.0 y : 2202.0
+        point : x : 3144.0 y : 2507.0
         shape : Square
     texts :
       text :
@@ -292,23 +295,6 @@ connectors :
     texts :
       text :
         bounds : x : 2026.0 y : 2575.0 width : 0.0 height : 0.0 where : end
-  connector : R9____Threat
-    render : subtype "lichess_bot::components::Engine::board::R9::Threat"
-    polyline :
-      segment :
-        start : x : 1824.0 y : 2640.0
-        end :   x : 1824.0 y : 2602.0
-      segment :
-        start : x : 1824.0 y : 2602.0
-        end :   x : 2016.0 y : 2602.0
-    anchors :
-      start :
-        point : x : 1824.0 y : 2640.0
-        shape : Interaction
-      end :
-        point : x : 2016.0 y : 2602.0
-        connector : R9
-    texts :
   connector : R9____Opportunity
     render : subtype "lichess_bot::components::Engine::board::R9::Opportunity"
     polyline :
@@ -322,6 +308,23 @@ connectors :
       start :
         point : x : 2208.0 y : 2640.0
         shape : Opportunity
+      end :
+        point : x : 2208.0 y : 2602.0
+        connector : R9
+    texts :
+  connector : R9____Threat
+    render : subtype "lichess_bot::components::Engine::board::R9::Threat"
+    polyline :
+      segment :
+        start : x : 1800.0 y : 2640.0
+        end :   x : 1800.0 y : 2602.0
+      segment :
+        start : x : 1800.0 y : 2602.0
+        end :   x : 2016.0 y : 2602.0
+    anchors :
+      start :
+        point : x : 1800.0 y : 2640.0
+        shape : Threat
       end :
         point : x : 2016.0 y : 2602.0
         connector : R9
