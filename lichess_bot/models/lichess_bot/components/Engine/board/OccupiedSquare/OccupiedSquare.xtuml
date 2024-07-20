@@ -1,0 +1,12 @@
+// BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+within lichess_bot::components::Engine::board is
+
+  //! A square currently occupied by a chess piece.
+  @key_letters("OccupiedSquare");
+  @class_num(1);
+  class OccupiedSquare is
+
+  end class;
+
+end;

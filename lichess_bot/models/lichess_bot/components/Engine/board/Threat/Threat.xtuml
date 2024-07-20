@@ -1,0 +1,12 @@
+// BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+within lichess_bot::components::Engine::board is
+
+  //! An interaction which poses a threat of piece-capture as seen from the Bot perspective.
+  @key_letters("Threat");
+  @class_num(10);
+  class Threat is
+
+  end class;
+
+end;

@@ -4,23 +4,41 @@ within lichess_bot::components::Engine is
 
   //! Maintains a representation of the chessboard and piece placement and movement.
   package board is
+    class Interaction;
+    class MyPiece;
+    class OccupiedSquare;
+    class OpenSquare;
+    class OpponentPiece;
+    class Opportunity;
     class Piece;
+    class PieceSpecification;
     class ProspectiveMove;
     class Square;
-    //! A piece not yet removed from the board must occupy a square.
-    relationship R1 is Piece unconditionally occupies one Square,
-                       Square conditionally 'is occupied by' one Piece;
+    class Threat;
+    relationship R1 is Square is_a (OccupiedSquare, OpenSquare);
 
-    relationship R2 is Square unconditionally 'ends on' one Square,
-                       Square unconditionally 'starts from' one Square
-                       using one ProspectiveMove;
+    relationship R2 is OccupiedSquare unconditionally 'is occupied by' one Piece,
+                       Piece conditionally occupies one OccupiedSquare;
 
-    relationship R3 is Piece conditionally 'is captured by' one ProspectiveMove,
-                       ProspectiveMove conditionally captures one Piece;
+    relationship R3 is Piece is_a (MyPiece, OpponentPiece);
 
-    relationship R4 is Piece conditionally 'is threatened by' many Piece,
-                       Piece conditionally threatens many Piece
-                       using one ProspectiveMove;
+    relationship R4 is Piece unconditionally 'is specified by' one PieceSpecification,
+                       PieceSpecification conditionally 'defines properties of' many Piece;
+
+    relationship R5 is OccupiedSquare conditionally 'is emptied by' many ProspectiveMove,
+                       ProspectiveMove unconditionally vacates one OccupiedSquare;
+
+    relationship R6 is ProspectiveMove unconditionally 'ends on' one Square,
+                       Square conditionally 'is destination of' many ProspectiveMove;
+
+    relationship R7 is MyPiece conditionally 'interacts with' many OpponentPiece,
+                       OpponentPiece conditionally 'interacts with' many MyPiece
+                       using one Interaction;
+
+    relationship R8 is Interaction unconditionally 'is presented by' one ProspectiveMove,
+                       ProspectiveMove conditionally presents one Interaction;
+
+    relationship R9 is Interaction is_a (Opportunity, Threat);
 
   end package;
 

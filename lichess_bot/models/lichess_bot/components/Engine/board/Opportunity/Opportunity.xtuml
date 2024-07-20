@@ -1,0 +1,12 @@
+// BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+within lichess_bot::components::Engine::board is
+
+  //! An interaction which offers the possibilty of opponent piece-capture as seen from the Bot perspective.
+  @key_letters("Opportunity");
+  @class_num(11);
+  class Opportunity is
+
+  end class;
+
+end;

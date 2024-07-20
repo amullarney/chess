@@ -1,0 +1,12 @@
+// BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+within lichess_bot::components::Engine::board is
+
+  //! One of the chessmen playing for this Bot.
+  @key_letters("MyPiece");
+  @class_num(7);
+  class MyPiece is
+
+  end class;
+
+end;

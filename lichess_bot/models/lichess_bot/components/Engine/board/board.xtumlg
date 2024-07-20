@@ -1,146 +1,328 @@
 render : "lichess_bot::components::Engine::board"
 
 shapes :
-  shape : Square
-    render : class "lichess_bot::components::Engine::board::Square"
-    bounds : x : 2244.0 y : 1944.0 width : 200.0 height : 150.0
+  shape : OccupiedSquare
+    render : class "lichess_bot::components::Engine::board::OccupiedSquare"
+    bounds : x : 2520.0 y : 2197.0 width : 200.0 height : 125.0
   shape : Piece
     render : class "lichess_bot::components::Engine::board::Piece"
-    bounds : x : 1632.0 y : 1956.0 width : 200.0 height : 150.0
+    bounds : x : 1860.0 y : 2040.0 width : 200.0 height : 150.0
   shape : ProspectiveMove
     render : class "lichess_bot::components::Engine::board::ProspectiveMove"
-    bounds : x : 1896.0 y : 1692.0 width : 200.0 height : 204.0
+    bounds : x : 2760.0 y : 2436.0 width : 200.0 height : 180.0
+  shape : OpenSquare
+    render : class "lichess_bot::components::Engine::board::OpenSquare"
+    bounds : x : 2520.0 y : 2052.0 width : 200.0 height : 108.0
+  shape : OpponentPiece
+    render : class "lichess_bot::components::Engine::board::OpponentPiece"
+    bounds : x : 1632.0 y : 2304.0 width : 200.0 height : 120.0
+  shape : MyPiece
+    render : class "lichess_bot::components::Engine::board::MyPiece"
+    bounds : x : 2208.0 y : 2304.0 width : 200.0 height : 120.0
+  shape : PieceSpecification
+    render : class "lichess_bot::components::Engine::board::PieceSpecification"
+    bounds : x : 1404.0 y : 2040.0 width : 200.0 height : 150.0
+  shape : Square
+    render : class "lichess_bot::components::Engine::board::Square"
+    bounds : x : 3072.0 y : 2052.0 width : 200.0 height : 150.0
+  shape : Interaction
+    render : class "lichess_bot::components::Engine::board::Interaction"
+    bounds : x : 1944.0 y : 2450.0 width : 200.0 height : 82.0
+  shape : Opportunity
+    render : class "lichess_bot::components::Engine::board::Opportunity"
+    bounds : x : 2148.0 y : 2640.0 width : 200.0 height : 96.0
 
 connectors :
-  connector : R1
-    render : association "lichess_bot::components::Engine::board::R1"
-    polyline :
-      segment :
-        start : x : 2244.0 y : 2052.0
-        end :   x : 1832.0 y : 2052.0
-    anchors :
-      start :
-        point : x : 2244.0 y : 2052.0
-        shape : Square
-      end :
-        point : x : 1832.0 y : 2052.0
-        shape : Piece
-    texts :
-      text :
-        bounds : x : 2159.0 y : 2068.0 width : 0.0 height : 0.0 where : start
-      text :
-        bounds : x : 2031.0 y : 2011.0 width : 0.0 height : 0.0 where : middle
-      text :
-        bounds : x : 1853.0 y : 2068.0 width : 0.0 height : 0.0 where : end
   connector : R2
     render : association "lichess_bot::components::Engine::board::R2"
     polyline :
       segment :
-        start : x : 2340.0 y : 1944.0
-        end :   x : 2340.0 y : 1848.0
+        start : x : 2060.0 y : 2123.0
+        end :   x : 2411.0 y : 2123.0
       segment :
-        start : x : 2340.0 y : 1848.0
-        end :   x : 2196.0 y : 1848.0
+        start : x : 2411.0 y : 2123.0
+        end :   x : 2411.0 y : 2256.0
       segment :
-        start : x : 2196.0 y : 1848.0
-        end :   x : 2196.0 y : 1986.0
-      segment :
-        start : x : 2196.0 y : 1986.0
-        end :   x : 2244.0 y : 1986.0
+        start : x : 2411.0 y : 2256.0
+        end :   x : 2520.0 y : 2256.0
     anchors :
       start :
-        point : x : 2340.0 y : 1944.0
-        shape : Square
-      end :
-        point : x : 2340.0 y : 1848.0
-        shape : Square
-    texts :
-      text :
-        bounds : x : 2381.0 y : 1916.0 width : 0.0 height : 0.0 where : start
-      text :
-        bounds : x : 2194.0 y : 1810.0 width : 0.0 height : 0.0 where : middle
-      text :
-        bounds : x : 2147.0 y : 1997.0 width : 0.0 height : 0.0 where : end
-  connector : R2____ProspectiveMove
-    render : associative_link "lichess_bot::components::Engine::board::R2::ProspectiveMove"
-    polyline :
-      segment :
-        start : x : 2096.0 y : 1884.0
-        end :   x : 2196.0 y : 1884.0
-    anchors :
-      start :
-        point : x : 2096.0 y : 1884.0
-        shape : ProspectiveMove
-      end :
-        point : x : 2196.0 y : 1884.0
-        connector : R2
-    texts :
-  connector : R3
-    render : association "lichess_bot::components::Engine::board::R3"
-    polyline :
-      segment :
-        start : x : 1896.0 y : 1799.0
-        end :   x : 1751.0 y : 1799.0
-      segment :
-        start : x : 1751.0 y : 1799.0
-        end :   x : 1751.0 y : 1956.0
-    anchors :
-      start :
-        point : x : 1896.0 y : 1799.0
-        shape : ProspectiveMove
-      end :
-        point : x : 1751.0 y : 1956.0
+        point : x : 2060.0 y : 2123.0
         shape : Piece
+      end :
+        point : x : 2520.0 y : 2256.0
+        shape : OccupiedSquare
     texts :
       text :
-        bounds : x : 1795.0 y : 1813.0 width : 0.0 height : 0.0 where : start
+        bounds : x : 2070.0 y : 2133.0 width : 0.0 height : 0.0 where : start
       text :
-        bounds : x : 1740.0 y : 1752.0 width : 0.0 height : 0.0 where : middle
+        bounds : x : 2372.0 y : 2133.0 width : 23.0 height : 27.0 where : middle
       text :
-        bounds : x : 1763.0 y : 1918.0 width : 0.0 height : 0.0 where : end
+        bounds : x : 2453.0 y : 2268.0 width : 0.0 height : 0.0 where : end
+  connector : R3
+    render : supertype "lichess_bot::components::Engine::board::R3"
+    polyline :
+      segment :
+        start : x : 1955.0 y : 2190.0
+        end :   x : 1955.0 y : 2255.0
+    anchors :
+      start :
+        point : x : 1955.0 y : 2190.0
+        shape : Piece
+      end :
+        point : x : 1955.0 y : 2255.0
+    texts :
+      text :
+        bounds : x : 1965.0 y : 2228.0 width : 0.0 height : 0.0 where : end
+  connector : R3____OpponentPiece
+    render : subtype "lichess_bot::components::Engine::board::R3::OpponentPiece"
+    polyline :
+      segment :
+        start : x : 1800.0 y : 2304.0
+        end :   x : 1800.0 y : 2255.0
+      segment :
+        start : x : 1800.0 y : 2255.0
+        end :   x : 1955.0 y : 2255.0
+    anchors :
+      start :
+        point : x : 1800.0 y : 2304.0
+        shape : OpponentPiece
+      end :
+        point : x : 1800.0 y : 2255.0
+        connector : R3
+    texts :
+  connector : R3____MyPiece
+    render : subtype "lichess_bot::components::Engine::board::R3::MyPiece"
+    polyline :
+      segment :
+        start : x : 2290.0 y : 2304.0
+        end :   x : 2290.0 y : 2255.0
+      segment :
+        start : x : 2290.0 y : 2255.0
+        end :   x : 1955.0 y : 2255.0
+    anchors :
+      start :
+        point : x : 2290.0 y : 2304.0
+        shape : MyPiece
+      end :
+        point : x : 1955.0 y : 2255.0
+        connector : R3
+    texts :
   connector : R4
     render : association "lichess_bot::components::Engine::board::R4"
     polyline :
       segment :
-        start : x : 1715.0 y : 2106.0
-        end :   x : 1715.0 y : 2147.0
-      segment :
-        start : x : 1715.0 y : 2147.0
-        end :   x : 1559.0 y : 2147.0
-      segment :
-        start : x : 1559.0 y : 2147.0
-        end :   x : 1559.0 y : 1984.0
-      segment :
-        start : x : 1559.0 y : 1984.0
-        end :   x : 1632.0 y : 1984.0
+        start : x : 1604.0 y : 2109.0
+        end :   x : 1860.0 y : 2109.0
     anchors :
       start :
-        point : x : 1715.0 y : 2106.0
-        shape : Piece
+        point : x : 1604.0 y : 2109.0
+        shape : PieceSpecification
       end :
-        point : x : 1632.0 y : 1984.0
+        point : x : 1860.0 y : 2109.0
         shape : Piece
     texts :
       text :
-        bounds : x : 1725.0 y : 2115.0 width : 0.0 height : 0.0 where : start
+        bounds : x : 1613.0 y : 2123.0 width : 0.0 height : 0.0 where : start
       text :
-        bounds : x : 1574.0 y : 2108.0 width : 0.0 height : 0.0 where : middle
+        bounds : x : 1717.0 y : 2072.0 width : 0.0 height : 0.0 where : middle
       text :
-        bounds : x : 1571.0 y : 1990.0 width : 0.0 height : 0.0 where : end
-  connector : R4____ProspectiveMove
-    render : associative_link "lichess_bot::components::Engine::board::R4::ProspectiveMove"
+        bounds : x : 1727.0 y : 2125.0 width : 0.0 height : 0.0 where : end
+  connector : R1
+    render : supertype "lichess_bot::components::Engine::board::R1"
     polyline :
       segment :
-        start : x : 1896.0 y : 1727.0
-        end :   x : 1596.0 y : 1727.0
-      segment :
-        start : x : 1596.0 y : 1727.0
-        end :   x : 1596.0 y : 1984.0
+        start : x : 3072.0 y : 2159.0
+        end :   x : 2866.0 y : 2159.0
     anchors :
       start :
-        point : x : 1896.0 y : 1727.0
+        point : x : 3072.0 y : 2159.0
+        shape : Square
+      end :
+        point : x : 2866.0 y : 2159.0
+    texts :
+      text :
+        bounds : x : 2881.0 y : 2175.0 width : 0.0 height : 0.0 where : end
+  connector : R1____OccupiedSquare
+    render : subtype "lichess_bot::components::Engine::board::R1::OccupiedSquare"
+    polyline :
+      segment :
+        start : x : 2720.0 y : 2255.0
+        end :   x : 2866.0 y : 2255.0
+      segment :
+        start : x : 2866.0 y : 2255.0
+        end :   x : 2866.0 y : 2159.0
+    anchors :
+      start :
+        point : x : 2720.0 y : 2255.0
+        shape : OccupiedSquare
+      end :
+        point : x : 2866.0 y : 2159.0
+        connector : R1
+    texts :
+  connector : R1____OpenSquare
+    render : subtype "lichess_bot::components::Engine::board::R1::OpenSquare"
+    polyline :
+      segment :
+        start : x : 2720.0 y : 2100.0
+        end :   x : 2866.0 y : 2100.0
+      segment :
+        start : x : 2866.0 y : 2100.0
+        end :   x : 2866.0 y : 2159.0
+    anchors :
+      start :
+        point : x : 2720.0 y : 2100.0
+        shape : OpenSquare
+      end :
+        point : x : 2866.0 y : 2159.0
+        connector : R1
+    texts :
+  connector : R5
+    render : association "lichess_bot::components::Engine::board::R5"
+    polyline :
+      segment :
+        start : x : 2867.0 y : 2436.0
+        end :   x : 2867.0 y : 2303.0
+      segment :
+        start : x : 2867.0 y : 2303.0
+        end :   x : 2720.0 y : 2303.0
+    anchors :
+      start :
+        point : x : 2867.0 y : 2436.0
         shape : ProspectiveMove
       end :
-        point : x : 1596.0 y : 1984.0
-        connector : R4
+        point : x : 2720.0 y : 2303.0
+        shape : OccupiedSquare
+    texts :
+      text :
+        bounds : x : 2876.0 y : 2398.0 width : 0.0 height : 0.0 where : start
+      text :
+        bounds : x : 2829.0 y : 2312.0 width : 0.0 height : 0.0 where : middle
+      text :
+        bounds : x : 2733.0 y : 2313.0 width : 0.0 height : 0.0 where : end
+  connector : R6
+    render : association "lichess_bot::components::Engine::board::R6"
+    polyline :
+      segment :
+        start : x : 2960.0 y : 2507.0
+        end :   x : 3144.0 y : 2507.0
+      segment :
+        start : x : 3144.0 y : 2507.0
+        end :   x : 3144.0 y : 2202.0
+    anchors :
+      start :
+        point : x : 2960.0 y : 2507.0
+        shape : ProspectiveMove
+      end :
+        point : x : 3144.0 y : 2202.0
+        shape : Square
+    texts :
+      text :
+        bounds : x : 2970.0 y : 2517.0 width : 0.0 height : 0.0 where : start
+      text :
+        bounds : x : 3105.0 y : 2466.0 width : 0.0 height : 0.0 where : middle
+      text :
+        bounds : x : 3156.0 y : 2217.0 width : 0.0 height : 0.0 where : end
+  connector : R7
+    render : association "lichess_bot::components::Engine::board::R7"
+    polyline :
+      segment :
+        start : x : 1832.0 y : 2375.0
+        end :   x : 2208.0 y : 2375.0
+    anchors :
+      start :
+        point : x : 1832.0 y : 2375.0
+        shape : OpponentPiece
+      end :
+        point : x : 2208.0 y : 2375.0
+        shape : MyPiece
+    texts :
+      text :
+        bounds : x : 1830.0 y : 2382.0 width : 0.0 height : 0.0 where : start
+      text :
+        bounds : x : 2014.0 y : 2333.0 width : 0.0 height : 0.0 where : middle
+      text :
+        bounds : x : 2124.0 y : 2377.0 width : 0.0 height : 0.0 where : end
+  connector : R7____Interaction
+    render : associative_link "lichess_bot::components::Engine::board::R7::Interaction"
+    polyline :
+      segment :
+        start : x : 2040.0 y : 2450.0
+        end :   x : 2039.0 y : 2375.0
+    anchors :
+      start :
+        point : x : 2040.0 y : 2450.0
+        shape : Interaction
+      end :
+        point : x : 2039.0 y : 2375.0
+        connector : R7
+    texts :
+  connector : R8
+    render : association "lichess_bot::components::Engine::board::R8"
+    polyline :
+      segment :
+        start : x : 2144.0 y : 2482.0
+        end :   x : 2760.0 y : 2484.0
+    anchors :
+      start :
+        point : x : 2144.0 y : 2482.0
+        shape : Interaction
+      end :
+        point : x : 2760.0 y : 2484.0
+        shape : ProspectiveMove
+    texts :
+      text :
+        bounds : x : 2154.0 y : 2492.0 width : 0.0 height : 0.0 where : start
+      text :
+        bounds : x : 2437.0 y : 2451.0 width : 0.0 height : 0.0 where : middle
+      text :
+        bounds : x : 2655.0 y : 2497.0 width : 0.0 height : 0.0 where : end
+  connector : R9
+    render : supertype "lichess_bot::components::Engine::board::R9"
+    polyline :
+      segment :
+        start : x : 2016.0 y : 2532.0
+        end :   x : 2016.0 y : 2602.0
+    anchors :
+      start :
+        point : x : 2016.0 y : 2532.0
+        shape : Interaction
+      end :
+        point : x : 2016.0 y : 2602.0
+    texts :
+      text :
+        bounds : x : 2026.0 y : 2575.0 width : 0.0 height : 0.0 where : end
+  connector : R9____Threat
+    render : subtype "lichess_bot::components::Engine::board::R9::Threat"
+    polyline :
+      segment :
+        start : x : 1824.0 y : 2640.0
+        end :   x : 1824.0 y : 2602.0
+      segment :
+        start : x : 1824.0 y : 2602.0
+        end :   x : 2016.0 y : 2602.0
+    anchors :
+      start :
+        point : x : 1824.0 y : 2640.0
+        shape : Interaction
+      end :
+        point : x : 2016.0 y : 2602.0
+        connector : R9
+    texts :
+  connector : R9____Opportunity
+    render : subtype "lichess_bot::components::Engine::board::R9::Opportunity"
+    polyline :
+      segment :
+        start : x : 2208.0 y : 2640.0
+        end :   x : 2208.0 y : 2602.0
+      segment :
+        start : x : 2208.0 y : 2602.0
+        end :   x : 2016.0 y : 2602.0
+    anchors :
+      start :
+        point : x : 2208.0 y : 2640.0
+        shape : Opportunity
+      end :
+        point : x : 2016.0 y : 2602.0
+        connector : R9
     texts :

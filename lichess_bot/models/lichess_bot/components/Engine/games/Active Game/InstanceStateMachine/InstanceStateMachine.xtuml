@@ -99,18 +99,51 @@ within lichess_bot::components::Engine::games::'Active Game' is
     best = 0;
     n = legal_moves.length - 1;
     i = 0;
+    
+    select many pms from instances of ProspectiveMove
+     where ( selected.Eval_depth == 1);
+    for each pm in pms
+      pm.Retain = false;
+    end for;
+    
     while (i < n)  // for each legal move we could play...
-      create object instance m of  ProspectiveMove;
-      m.Eval_depth = 1;
-      m.Notation = legal_moves[i];  // keep this for debug - and for various moves arrays
-      start = ::from_square( move:legal_moves[i] );
-      target = ::to_square( move:legal_moves[i] );
-      relate start to target across R2.'starts from' using m;
-      m.Is_safe = true; // tentatively
-      LOG::LogInfo(message: "Evaluating bot move " + legal_moves[i]); 
-      m.evaluate_move(fen:self.initial_fen, moves:moves);
+      select any pm from instances of ProspectiveMove
+       where (selected.Notation == legal_moves[i]);
+      if (empty pm) 
+    	  create object instance pm of ProspectiveMove;
+    	  pm.Eval_depth = 1;
+    	  pm.Notation = legal_moves[i];  // keep this for debug - and for various moves arrays
+    	  start = ::from_square( move:legal_moves[i] );
+    	  target = ::to_square( move:legal_moves[i] );
+    	  relate pm to start across R5.'vacates';
+    	  relate pm to target across R6.'ends on';
+    	  pm.Retain = true;
+    	else
+    	  pm.Retain = true;
+      end if;
       i = i + 1;
     end while;
+    
+    select many pms from instances of ProspectiveMove
+     where ( selected.Eval_depth == 1);
+    for each pm in pms
+      if (pm.Retain == false);
+        pm.delete();
+      end if;
+    end for;
+    
+    select many oppieces from instances of OpponentPiece;
+    select many sqs related by oppieces->Piece[R3]->OccupiedSquare[R2.'occupies']->Square[R1];
+    select many pms from instances of ProspectiveMove;
+    select many tgts related by pms->Square[R6.'ends on'];
+    opsqs = tgts & sqs;
+    
+    for each opsq in opsqs
+      select one spec related by opsq->OccupiedSquare[R1]->Piece[R2.'is occupied by']->PieceSpecification[R4.'is specified by'];
+      // does this opportunity already exist?..
+      // get target value from spec -- TBD
+    end for;  
+    /*
     select many possible_moves from instances of  ProspectiveMove
      where (selected.Eval_depth == 1);
     for each possible in possible_moves
@@ -119,6 +152,7 @@ within lichess_bot::components::Engine::games::'Active Game' is
         best = possible.Value;
       end if;
     end for; 
+    */
     
     if (ourmove == "")
       select any move from instances of  ProspectiveMove
@@ -135,9 +169,11 @@ within lichess_bot::components::Engine::games::'Active Game' is
       end if;
     end if;
     
+    /*
     for each possible in possible_moves
       delete object instance possible;
     end for; 
+    */
     
     // play the move
     create event instance e of ActiveGame3:'play move'(move: ourmove) to self;
