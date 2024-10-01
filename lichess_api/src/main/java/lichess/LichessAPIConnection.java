@@ -156,6 +156,7 @@ public class LichessAPIConnection implements LichessAPIProvider {
 		if (fen != null && !fen.isEmpty()) {
 			params.put("fen", fen);
 		}
+		params.put("keepAliveStream", Boolean.toString(true));
 		return postRequest(String.format("%s/api/challenge/%s", baseUrl, user), "application/x-www-form-urlencoded",
 				params);
 	}

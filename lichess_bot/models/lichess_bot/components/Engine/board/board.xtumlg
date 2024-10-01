@@ -331,7 +331,7 @@ connectors :
         point : x : 1967.0 y : 2136.0
         shape : Player
       end :
-        point : x : 2328.0 y : 2182.0
+        point : x : 1967.0 y : 2182.0
         shape : Move
     texts :
       text :

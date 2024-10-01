@@ -19,7 +19,9 @@ within lichess_bot::components::Engine::games is
     start_color: Color;
 
     //! Save the targe move set for retrieval when considering moves.
-    save_moveset: set of instance of Move;
+    save_moveset: integer;
+
+    evalcount: integer;
 
     preferred identifier is (id);
 

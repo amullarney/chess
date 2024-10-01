@@ -38,10 +38,16 @@ within lichess_bot::components::Engine::board::Move is
     fen = param.fen;
     played_moves = param.moves;
     game = param.game;
-    //LOG::LogInfo(message:"move start evaluation " + self.Notation);
+    LOG::LogInfo(message:"move start evaluation " + self.Notation);
+
+    game.evalcount = game.evalcount + 1;
 
     select one spec related by self->Square[R5.'targets']->OccupiedSquare[R1]->Piece[R2.'is occupied by']->PieceSpecification[R4.'is specified by'];
-    self.Value = spec.Value;
+    if (not_empty spec)  // in case we are evaluating all - not just target moves
+      self.Value = spec.Value;
+    else
+      self.Value = 0;
+    end if;
     select one pm related by self->PotentialMove[R11];
     unrelate self from pm across R11;
     delete object instance pm;
@@ -66,22 +72,22 @@ within lichess_bot::components::Engine::board::Move is
     if (empty move)
       select one game related by player->ActiveGame[R22.'delegates to'];
       generate ActiveGame6:consider_moves() to game;
-      LOG::LogInfo(message:"Generating ActiveGame6:consider from move " + self.Notation);
+      //LOG::LogInfo(message:"Generating ActiveGame6:consider from move " + self.Notation);
     end if;
     //LOG::LogInfo(message:self.Notation + " now dormant");
+    //generate Move3:reactivate() to self; // bypass this efficiency...
     @endnoparse
   end state;
 
   transition dormant [evaluate] => dormant(fen: in string, moves: in sequence of string, game: in instance of 'Active Game') is
     @noparse
-    LOG::LogInfo( message:self.Notation + " dormant: skipping re-evaluation" );
+    LOG:://LogInfo( message:self.Notation + " dormant: skipping re-evaluation" );
     @endnoparse
   end transition;
 
   transition dormant [reactivate] => activated is
     @noparse
-    //LOG::LogInfo(message:self.Notation + " reactivating");
-    self.Value = 0;
+    //LOG::LogInfo( message:"reactivating move " + self.Notation );
     @endnoparse
   end transition;
 
