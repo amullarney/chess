@@ -169,6 +169,7 @@ within lichess_bot::components is
         select any game from instances of ActiveGame where selected.id == g.id;
         if empty game then
         	game = ActiveGame::new_game(id: g.id);
+        	::init_board();
         end if;
 
         // set color for the game
@@ -230,6 +231,7 @@ within lichess_bot::components is
         select any game from instances of ActiveGame where selected.id == g.id;
         if empty game then
         	game = ActiveGame::new_game(id: g.id);
+        	::init_board();
         end if;
         @endnoparse
       end message;

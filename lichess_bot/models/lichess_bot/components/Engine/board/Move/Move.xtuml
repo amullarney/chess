@@ -41,6 +41,17 @@ within lichess_bot::components::Engine::board is
       @endnoparse
     end operation;
 
+    @dialect("oal");
+    @operation_num(6);
+    class operation dispose_all() is
+      @noparse
+      select many moves from instances of Move;
+      for each move in moves
+        move.dispose();
+      end for;
+      @endnoparse
+    end operation;
+
   end class;
 
 end;

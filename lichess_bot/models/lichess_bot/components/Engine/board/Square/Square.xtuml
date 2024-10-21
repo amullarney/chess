@@ -89,6 +89,26 @@ within lichess_bot::components::Engine::board is
       @endnoparse
     end operation;
 
+    @dialect("oal");
+    @operation_num(4);
+    class operation dispose_all() is
+      @noparse
+      select many squares from instances of Square;
+      for each square in squares
+        select one occupied related by square->OccupiedSquare[R1];
+        if ( not_empty occupied)
+          unrelate occupied from square across R1;
+          delete object instance occupied;
+        else
+          select one open related by square->OpenSquare[R1];
+          unrelate open from square across R1;
+          delete object instance open;
+        end if;
+        delete object instance square;
+      end for;
+      @endnoparse
+    end operation;
+
   end class;
 
 end;

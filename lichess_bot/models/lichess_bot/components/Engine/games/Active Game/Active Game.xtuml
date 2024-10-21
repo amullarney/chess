@@ -96,6 +96,7 @@ within lichess_bot::components::Engine::games is
       select one player related by self->Player[R22.'is acting for'];
       unrelate self from player across R22.'is acting for';
       delete object instance self;
+      ::clean_board( player: player);
       @endnoparse
     end operation;
 

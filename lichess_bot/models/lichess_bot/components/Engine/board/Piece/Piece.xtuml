@@ -281,6 +281,25 @@ within lichess_bot::components::Engine::board is
       @endnoparse
     end operation;
 
+    @dialect("oal");
+    @operation_num(3);
+    class operation dispose_all() is
+      @noparse
+      select many pieces from instances of Piece;
+      for each piece in pieces
+        select one spec related by piece->PieceSpecification[R4.'is specified by'];
+        unrelate piece from spec across R4.'is specified by';
+        select one player related by piece->Player[R7.'belongs to'];
+        unrelate piece from player across R7.'belongs to';
+        select one ocsq related by piece->OccupiedSquare[R2.'occupies'];
+        if (not_empty ocsq)
+          unrelate piece from ocsq across R2.'occupies';
+        end if;
+        delete object instance piece;
+      end for;
+      @endnoparse
+    end operation;
+
   end class;
 
 end;

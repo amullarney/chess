@@ -4,6 +4,21 @@ within lichess_bot::components::Engine is
 
   package functions is
     @dialect("oal");
+    @function_num(12);
+    function clean_board(player: in instance of Player) is
+      @noparse
+      bot_player = param.player;
+      Move::dispose_all();
+      Piece::dispose_all();
+      Square::dispose_all();
+      select one player related by bot_player->Player[R8.'opposes'];
+      unrelate bot_player from player across R8.'opposes';
+      delete object instance bot_player;
+      delete object instance player;
+      @endnoparse
+    end function;
+
+    @dialect("oal");
     @function_num(5);
     function evaluate_response(move: in instance of Move, fen: in string, played_moves: in sequence of string) is
       @noparse
@@ -179,18 +194,24 @@ within lichess_bot::components::Engine is
       	create object instance bot of Bot;
       	bot.config = PROP::loadProperties(file_name:"lichess_bot.properties");
       end if;
-
-      select any opsq from instances of OpenSquare where false; // decl for unused param
-      Player::initialize(unused:opsq);
-      PieceSpecification::initialize();
-      Square::initialize();
-      Piece::initialize();
+      PieceSpecification::initialize(); // these are 'eternal' for all games
       Openers::initialize();
 
       // connect to the Lichess API and start listening for events
       send chess::connect(properties: bot.config);
 
       LOG::LogInfo(message: "Initialization complete");
+      @endnoparse
+    end function;
+
+    @dialect("oal");
+    @function_num(11);
+    function init_board() is
+      @noparse
+      select any opsq from instances of OpenSquare where false; // decl for unused param
+      Player::initialize(unused:opsq);
+      Square::initialize();
+      Piece::initialize();
       @endnoparse
     end function;
 

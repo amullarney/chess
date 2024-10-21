@@ -39,6 +39,17 @@ within lichess_bot::components::Engine::sequences is
       @endnoparse
     end operation;
 
+    @dialect("oal");
+    @operation_num(2);
+    class operation dispose_all() is
+      @noparse
+      select many openers from instances of Openers;
+      for each opener in openers;
+        delete object instance opener;
+      end for;
+      @endnoparse
+    end operation;
+
   end class;
 
 end;
